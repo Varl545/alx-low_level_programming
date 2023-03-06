@@ -1,14 +1,18 @@
 #include "main.h"
 /**
-*_strspn - gets the length of a prefix substring.
-*@s:segment targeted
-*@accept:reference bytes container
+*_strpbrk - The _strpbrk() function locates the first
+* occurrence in the string s of any of the bytes in
+*the string accept
 *
-*Return: the number of accepted bytes.
+*@s: string where search is made
+*@accept: string where searched bytes are located
+*
+*Return:Returns a pointer to the byte in s that matches
+* one of the bytes in accept, or NULL if no such byte is found
 */
-unsigned int _strspn(char *s, char *accept)
+
+char *_strpbrk(char *s, char *accept)
 {
-	unsigned int bytes = 0;
 	int i;
 
 	while (*s)
@@ -16,14 +20,10 @@ unsigned int _strspn(char *s, char *accept)
 		for (i = 0; accept[i]; i++)
 		{
 			if (accept[i] == *s)
-			{
-				bytes++;
-				break;
-			}
-			else if ((accept[i + 1]) == '\0')
-				return (bytes);
+				return (s);
 		}
 		s++;
 	}
-	return (bytes);
+
+	return ('\0');
 }
